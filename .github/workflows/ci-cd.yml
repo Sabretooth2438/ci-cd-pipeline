@@ -25,14 +25,19 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Build
-        run: echo "Build goes here"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-      - name: Test
-        run: echo "Test goes here"
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Publish
-        run: echo "Publish logic goes here"
+      - name: Run Tests
+        run: npm test
+
+      - name: Publish (Dummy)
+        run: echo "Published to registry"
 
   cicd:
     if: github.ref == 'refs/heads/release'
@@ -42,14 +47,19 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Build
-        run: echo "Build goes here"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-      - name: Test
-        run: echo "Test goes here"
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Publish
-        run: echo "Publish logic goes here"
+      - name: Run Tests
+        run: npm test
 
-      - name: Deploy
-        run: echo "Deployment logic goes here"
+      - name: Publish (Dummy)
+        run: echo "Published to registry"
+
+      - name: Deploy (Dummy)
+        run: echo "Deployed to production"
