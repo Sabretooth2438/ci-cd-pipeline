@@ -1,12 +1,14 @@
 name: CI/CD Pipeline
 
+# Trigger only on push to main and release
 on:
   push:
     branches:
-      - main
-      - release
+      - main      # CI only
+      - release   # CI/CD only
 
 jobs:
+  # 🔍 Job 1: Code Scanning (runs on both main and release)
   code-scan:
     name: Code Scanning
     runs-on: ubuntu-latest
@@ -25,6 +27,7 @@ jobs:
       - name: Run npm audit
         run: npm audit --audit-level=low || true
 
+  # 🧪 Job 2: CI (runs only on main)
   ci:
     if: github.ref == 'refs/heads/main'
     name: CI (Build, Test, Publish)
@@ -47,6 +50,7 @@ jobs:
       - name: Publish (Dummy)
         run: echo "Published to registry"
 
+  # 🚀 Job 3: Full CI/CD (runs only on release)
   cicd:
     if: github.ref == 'refs/heads/release'
     name: Full CI/CD Pipeline
