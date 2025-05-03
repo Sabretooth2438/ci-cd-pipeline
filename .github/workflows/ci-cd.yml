@@ -1,4 +1,4 @@
-name: CI/CD Placeholder
+name: CI/CD Pipeline
 
 on:
   push:
@@ -7,8 +7,49 @@ on:
       - release
 
 jobs:
-  placeholder:
+  code-scan:
+    name: Code Scanning
     runs-on: ubuntu-latest
     steps:
-      - name: Placeholder step
-        run: echo "Workflow setup done"
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Code Scan
+        run: echo "Code scanning goes here"
+
+  ci:
+    if: github.ref == 'refs/heads/main'
+    name: CI (Build, Test, Publish)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: echo "Build goes here"
+
+      - name: Test
+        run: echo "Test goes here"
+
+      - name: Publish
+        run: echo "Publish logic goes here"
+
+  cicd:
+    if: github.ref == 'refs/heads/release'
+    name: Full CI/CD Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: echo "Build goes here"
+
+      - name: Test
+        run: echo "Test goes here"
+
+      - name: Publish
+        run: echo "Publish logic goes here"
+
+      - name: Deploy
+        run: echo "Deployment logic goes here"
