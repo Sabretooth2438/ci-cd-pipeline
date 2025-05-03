@@ -1,0 +1,14 @@
+name: CI/CD Placeholder
+
+on:
+  push:
+    branches:
+      - main
+      - release
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder step
+        run: echo "Workflow setup done"
